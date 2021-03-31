@@ -1,0 +1,29 @@
+\documentclass[a4paper]{article}
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{xargs}
+\usepackage{multicol}
+
+\title{Algoritmo dei K-Nearest Neighbours}
+\date{31 marzo 2021}
+\author{Davide Peccioli}
+
+\begin{document}
+\maketitle
+
+Dato un punto, per mezzo di questo algoritmo è possibile classificarli, associandovi una classe di appartenenza.
+
+Il codice presentato, consente, dato un insieme di punti di cui si conosce la classe, ed un insieme di punti da testare, ma di cui comunque si conosce la classe, di stabilire per quali valori $k$ l'algoritmo funziona meglio.
+
+\section{Funzionamento dell'algorimo}
+
+L'algoritmo funziona sulla base di un insieme di punti di partenza (denominato \textbf{train set}), ciascuno associato alla propria classe: dato un punto da analizzare (denominato \textbf{A}), il risultato sarà la classe di appartenenza del punto stesso.
+
+All'algoritmo viene passato un parametro $k$. Verranno presi i $k$ punti del \textbf{train set} più vicini ad \textbf{A}, e la classe più frequente tra questi punti sarò la classe assegnata ad \textbf{A} stesso.
+
+\end{document}

@@ -218,7 +218,7 @@ for k = 1:100
     H = sortrows(G, 2);
     if mode(H(1:k, 1)) != test(i, 3)
       accuratezza = accuratezza + 1;
-      % scatter(test(i, 1), test(1, 2), 50, 'r', 'Filled')
+      % scatter(test(i, 1), test(1, 2), 50, 'r', 'Filled') % questa riga, se non commentata, disegna i punti in cui l'algorimo ha fallito
     end
    end
 
@@ -230,8 +230,10 @@ end
 accuracyVec
 
 figure
-plot(accuracyVec(1,:), accuracyVec(2,:))
+f = plot(accuracyVec(1,:), accuracyVec(2,:))
 grid on
 hold on
 
 prompt = input('Premere invio per terminare ')
+
+saveas(f,'accuratezza.png')
