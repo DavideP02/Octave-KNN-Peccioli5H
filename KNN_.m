@@ -97,7 +97,7 @@ train = [2.162700 3.866600 1.000000;
         -2.109400 -0.189300 2.000000;
         -0.384000 2.679900 2.000000;
         2.382900 -0.655500 2.000000;
-        0.035800 -4.296100 2.00000]; % insieme di train
+        0.035800 -4.296100 2.00000];
 test = [3.076600 3.935400 1.000000;
         0.323000 3.776800 1.000000;
         2.227500 3.186500 1.000000;
@@ -197,48 +197,28 @@ test = [3.076600 3.935400 1.000000;
         -1.367000 -0.238300 2.000000;
         -0.225800 1.478100 2.000000;
         -2.059400 -1.199500 2.000000;
-        0.185600 2.548400 2.000000]; % insieme di test
+        0.185600 2.548400 2.000000];
 
-fig = figure % qui stampo i punti
-scatter(test(:,1), test(:,2), 30, 'm', 'Filled')
+fig = figure
+scatter(test(:,1), test(:,2), 30, 'b', 'Filled')
 grid on
 hold on
 scatter(train(:,1), train(:,2), 30, 'k', 'Filled')
 
-[r,c] = size(test); % ottengo le dimensioni della matrice test
+[r,c] = size(test);
 
-max = 50; % rappresenta il tetto massimo in cui varia k
 
-errore = 0; % è la variabile che si incrementa ad ogni errore dell'algoritmo
+k = 4
 
-accuracyVec = zeros(max, 2); % creo una matrice di 0 da riempire con k e la sua accuratezza
-
-for k = 1:max % itero l'algoritmo per ogni k
-
-  for i = 1:r % studio l'i-esimo punto della matrice test
-    D = sqrt((test(i,1:2)-train(:,1:2)).^2*[1; 1]); % trovo la distanza di ogni punto di train dall'i-esimo punto di test
-    G = cat(2, train(:, 3), D); % affianco ad ogni distanza trovata la classe del punto corrispondente (da train)
-    H = sortrows(G, 2); % pongo in ordine crescente di distanza gli elementi della matrice G
-    if mode(H(1:k, 1)) != test(i, 3) % se la classe più frequente dei primi k elementi della matrice G (ovvero la classe trovata con l'algoritmo) non è uguale alla classe teorica del punto, incrementa l'errore
-      errore = errore + 1;
-      % scatter(test(i, 1), test(1, 2), 50, 'r', 'Filled') % questa riga, se non commentata, disegna i punti in cui l'algorimo ha fallito
-    end
-   end
-
-  accuracyVec(k, 1) = k % inserisco le coppie di punti (k, percentuale di successo) nella matrice accuracyVec
-  accuracyVec(k, 2) = 100*(r - errore)/r;
-
-  errore = 0;
-end
-
-accuracyVec % stampo a schermo i valori di accuracyVec
-
-figure % stampo il grafico dell'accuratezza al variare di k
-f = plot(accuracyVec(:,1), accuracyVec(:,2))
-grid on
-hold on
+for i = 1:r
+  D = sqrt((test(i,1:2)-train(:,1:2)).^2*[1; 1])
+  G = cat(2, train(:, 3), D)
+  H = sortrows(G, 2)
+  if mode(H(1:k, 1)) != test(i, 3)
+    scatter(test(i, 1), test(1, 2), 50, 'r', 'Filled') % questa riga, se non commentata, disegna i punti in cui l'algorimo ha fallito
+  end
+ end
 
 prompt = input('Premere invio per terminare ')
 
-saveas(f,'accuratezza.png')
-saveas(fig, 'punti.png')
+saveas(fig, 'puntisb.png')
