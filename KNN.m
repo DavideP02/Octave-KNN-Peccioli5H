@@ -199,25 +199,27 @@ test = [3.076600 3.935400 1.000000;
         -2.059400 -1.199500 2.000000;
         0.185600 2.548400 2.000000];
 
-figure
-scatter(test(:,1), test(:,2), 30, 'b', 'Filled')
+fig = figure
+scatter(test(:,1), test(:,2), 30, 'm', 'Filled')
 hold on
 scatter(train(:,1), train(:,2), 30, 'k', 'Filled')
 
 [r,c] = size(test);
 
+max = 100
+
 accuratezza = 0;
 
-accuracyVec = 1:100;
+accuracyVec = 1:max;
 
-for k = 1:100
+for k = 1:max
 
   for i = 1:r
-    D = sqrt((test(i,1:2)-train(:,1:2)).^2*[1; 1]);
-    G = cat(2, train(:, 3), D);
-    H = sortrows(G, 2);
+    D = sqrt((test(i,1:2)-train(:,1:2)).^2*[1; 1])
+    G = cat(2, train(:, 3), D)
+    H = sortrows(G, 2)
     if mode(H(1:k, 1)) != test(i, 3)
-      accuratezza = accuratezza + 1;
+      accuratezza = accuratezza + 1
       % scatter(test(i, 1), test(1, 2), 50, 'r', 'Filled') % questa riga, se non commentata, disegna i punti in cui l'algorimo ha fallito
     end
    end
@@ -237,3 +239,4 @@ hold on
 prompt = input('Premere invio per terminare ')
 
 saveas(f,'accuratezza.png')
+saveas(fig, 'punti.png')
