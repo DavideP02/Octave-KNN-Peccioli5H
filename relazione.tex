@@ -50,25 +50,25 @@ L'esecuzione su terminale del codice presentato è disponibile \href{https://you
 I due grafici che sono stati prodotti dal codice sono:
 \begin{figure}
 \centering
+\label{fig:punti}
 \includegraphics[width=10cm]{punti}
 \caption{Punti di train e di test}
-\label{fig:punti}
 \end{figure}
 \begin{figure}
 \centering
+\label{fig:acc}
 \includegraphics[width=12cm]{accuratezza}
 \caption{Accuratezza al variare di $k$}
-\label{fig:acc}
 \end{figure}
 
 Nella figura~\ref{fig:punti} possiamo vedere in nero i punti del \textbf{train set}, e in magenta i punti che verranno processati dall'algoritmo.
 
-Nella figura~\ref{fig:acc} è rappresentato l'andamento dell'accuratezza (in percentuale) dell'algoritmo al variare di $k$, per valori da $0$ a $100$. Possiamo notare come contrariamente da quello che ci si può aspettare, i valori di $k$ per cui l'accuratezza è massima sono relativamente bassi:
+Nella figura~\ref{fig:acc} è rappresentato l'andamento dell'accuratezza (in percentuale) dell'algoritmo al variare di $k$, per valori da $0$ a $50$. Possiamo notare come contrariamente da quello che ci si può aspettare, i valori di $k$ per cui l'accuratezza è massima sono relativamente bassi:
 \[
 k \in K = \{3; 4; 5; 7; 8; 9; 10\}
 \]
 
-Per tutti i valori di $k\in K$ l'accuratezza è pari al 91\%, mentre il valore minimo, toccato con $k=100$ è del 50\%.
+Per tutti i valori di $k\in K$ l'accuratezza è pari al 91\%, mentre il valore minimo, toccato con $k=100$ (non mostrato in figura) è del 50\%.
 
 Con una piccola modifica al codice, è possibile stampare i punti dell'insieme di test per cui l'algoritmo (con $k=4$) non ha funzionato: il risultato è mostrato nella figura~\ref{fig:sb} (punti in rosso).
 
@@ -76,9 +76,9 @@ Possiamo quindi notare come l'algoritmo abbia fallito in una zona sul piano part
 
 \begin{figure}
 \centering
+\label{fig:sb}
 \includegraphics[width=10cm]{puntisb}
 \caption{Punti di train e di test}
-\label{fig:sb}
 \end{figure}
 
 \end{document}
